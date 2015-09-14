@@ -13,7 +13,7 @@ describe('generator', function() {
         return
       }
 
-      this.generator = helpers.createGenerator('sketchplugin:app', deps, null, {skipInstall: true})
+      this.generator = helpers.createGenerator('sketch-plugin:app', deps, null, {skipInstall: true})
       done()
     }.bind(this))
   })
