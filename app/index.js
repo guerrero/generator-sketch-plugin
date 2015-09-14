@@ -79,9 +79,9 @@ module.exports = generators.generators.Base.extend({
 
 function prefixDotfiles(files, context) {
   files.forEach(function(file) {
-    var parsedFilePath = path.parse(context.destinationPath(file))
-    var dirname = parsedFilePath.dir
-    var basename = parsedFilePath.base
+    var filePath = context.destinationPath(file)
+    var dirname = path.dirname(filePath)
+    var basename = path.basename(filePath)
 
     context.fs.move(path.join(dirname, basename), path.join(dirname, '.' + basename))
   })
