@@ -1,6 +1,6 @@
 {
   "name": "generator-sketch-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Scaffold out a Sketch app plugin",
   "keywords": [
     "yeoman-generator",
