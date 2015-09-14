@@ -1,4 +1,4 @@
-# generator-sketch-plugin
+# generator-sketch-plugin [![Build Status](https://travis-ci.org/guerrero/generator-sketch-plugin.svg?branch=master)](https://travis-ci.org/guerrero/generator-sketch-plugin)
 
 > Scaffold out a sketch plugin
 
