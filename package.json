@@ -1,0 +1,45 @@
+{
+  "name": "generator-sketch-plugin",
+  "version": "0.0.0",
+  "description": "Scaffold out a Sketch app plugin",
+  "keywords": [
+    "yeoman-generator",
+    "plugin",
+    "boilerplate",
+    "template",
+    "scaffold",
+    "sketchapp",
+    "sketch"
+  ],
+  "homepage": "https://github.com/guerrero/generator-sketch-plugin",
+  "bugs": {
+    "url": "https://github.com/guerrero/generator-sketch-plugin/issues"
+  },
+  "license": "Unlicense",
+  "author": {
+    "name": "Alex Guerrero",
+    "email": "alexguerrero1092@gmail.com",
+    "url": "https://github.com/guerrero"
+  },
+  "files": [
+    "app"
+  ],
+  "repository": "guerrero/generator-sketch-plugin",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint && mocha"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.20.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.4.1",
+    "mocha": "*",
+    "yeoman-assert": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+}

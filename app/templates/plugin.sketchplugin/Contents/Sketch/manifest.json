@@ -1,0 +1,23 @@
+{
+  "author" : "<%= authorName %>",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "handler" : "onRun",
+      "shortcut" : "<%= pluginShortcut %>",
+      "name" : "<%= pluginName %>",
+      "identifier" : "<%= compactedPluginName %>"
+    }
+  ],
+  "menu" : {
+    "isRoot": true,
+    "items" : [
+      "<%= compactedPluginName %>"
+    ]
+  },
+  "identifier" : "<%= pluginIdentifier %>",
+  "version" : "1.0",
+  "description" : "<%= pluginDescription %>",
+  "authorEmail" : "<%= authorEmail %>",
+  "name" : "<%= pluginName %>"
+}
