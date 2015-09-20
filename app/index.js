@@ -5,7 +5,7 @@ var _s = require('underscore.string')
 var path = require('path')
 var merge = require('lodash').merge
 
-module.exports = generators.generators.Base.extend({
+module.exports = generators.Base.extend({
   constructor: function() {
     generators.Base.apply(this, arguments)
   },
