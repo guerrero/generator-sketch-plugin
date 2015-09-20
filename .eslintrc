@@ -4,9 +4,6 @@
     "node": true,
     "mocha": true
   },
-  "globals": {
-    "webpack": true
-  },
   "rules": {
     // Possible errors
     "comma-dangle": [2, "never"],
