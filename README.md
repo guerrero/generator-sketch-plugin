@@ -1,11 +1,20 @@
 # generator-sketch-plugin [![Build Status](https://travis-ci.org/guerrero/generator-sketch-plugin.svg?branch=master)](https://travis-ci.org/guerrero/generator-sketch-plugin)
 
-> Scaffold out a sketch plugin
+> [Yeoman](http://yeoman.io/) generator to scaffold out a Sketch app plugin.
 
-This is what I use for create new Sketch app plugins
+
+## Requirements
+
+You should have [Node.js](https://nodejs.org/en/) installed and Yeoman installed globally:
+
+```
+npm install --global yo
+```
 
 
 ## Install
+
+To install `generator-sketch-plugin` from npm, run:
 
 ```
 $ npm install --global generator-sketch-plugin
@@ -14,7 +23,13 @@ $ npm install --global generator-sketch-plugin
 
 ## Usage
 
-With [yo](https://github.com/yeoman/yo):
+1. Make a new directory to place the files created by this template and `cd` into it.
+
+```
+$ mkdir my-sketch-project && cd $_
+```
+
+2. Generate files with [yo](https://github.com/yeoman/yo):
 
 ```
 $ yo sketch-plugin
@@ -23,4 +38,4 @@ $ yo sketch-plugin
 
 ## License
 
-[Unlicense](http://unlicense.org/)
+[The Unlicense](http://unlicense.org/)
