@@ -24,6 +24,8 @@ describe('generator', function() {
       '.gitattributes',
       'LICENSE',
       'README.md',
+      'package.json',
+      'tasks/manifest-update.js',
       'My awesome plugin.sketchplugin/Contents/Sketch/manifest.json',
       'My awesome plugin.sketchplugin/Contents/Sketch/script.cocoascript'
     ]

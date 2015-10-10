@@ -68,8 +68,9 @@ module.exports = generators.Base.extend({
     var done = this.async()
     var self = this
 
-    this.fs.copyTpl([this.templatePath('*'), '!plugin.sketchPlugin'], this.destinationPath(), this.props)
+    this.fs.copyTpl(this.templatePath('*'), this.destinationPath(), this.props)
     this.fs.copyTpl(this.templatePath('plugin.sketchplugin'), this.destinationPath(this.props.pluginName + '.sketchplugin'), this.props)
+    this.fs.copyTpl(this.templatePath('tasks/*'), this.destinationPath('tasks/'), this.props)
 
     prefixDotfiles(this.props.dotfiles, self)
 
