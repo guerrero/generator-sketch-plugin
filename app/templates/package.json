@@ -1,0 +1,14 @@
+{
+  "name": "<%= pluginName %>",
+  "version": "1.0.0",
+  "description": "<%= pluginDescription %>",
+  "license": "MIT",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"
+  },
+  "scripts": {
+    "manifest:update": "node ./tasks/manifest-update.js"
+  },
+  "private": true
+}
