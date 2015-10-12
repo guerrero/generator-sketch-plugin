@@ -25,7 +25,7 @@ var regex = {
 function getManifest(pluginDir) {
   try {
     return require(path.join(pluginDir, 'manifest.json'))
-  } catch(e) {
+  } catch (e) {
     message('ERROR', path.join(pluginDir, 'manifest.json') + message.parseError)
     process.exit(1)
   }
@@ -48,11 +48,12 @@ function checkForValidShortcut(regExpMatch, script) {
 
   if (shortcutMatch) {
     var shortcut = shortcutMatch[1]
+
     if (regex.shortcutValidation.test(shortcut)) {
       return shortcut
-    } else {
-      reportErrorInShortcut(shortcut, regExpMatch[1], script)
     }
+
+    reportErrorInShortcut(shortcut, regExpMatch[1], script)
   }
 }
 
@@ -67,8 +68,8 @@ function writeManifestFile(directory, input) {
       message('SUCCESS', messages.manifestCreated + outputPath)
     })
   } else {
-    errorMessages.forEach(function(message) {
-      message('ERROR', message)
+    errorMessages.forEach(function(msg) {
+      message('ERROR', msg)
     })
   }
 }
@@ -76,7 +77,6 @@ function writeManifestFile(directory, input) {
 message('INFO', messages.start)
 
 plugins.forEach(function(plugin) {
-
   var pluginDir = path.resolve(__dirname, '../' + plugin + '/Contents/Sketch')
   var pluginFiles = fs.readdirSync(pluginDir)
 
@@ -95,31 +95,34 @@ plugins.forEach(function(plugin) {
     var scripts = filterFilesInDirByExtension(pluginDir, '.cocoascript')
 
     scripts.forEach(function(script, index) {
-      var pluginCommands = []
       var scriptMenuItem = {
         title: script.replace('.cocoascript', ''),
         items: []
       }
 
       fs.readFile(path.join(pluginDir, script), function(err, data) {
-        if (err) throw err
+        if (err) {
+          throw err
+        }
 
         var match
-        while (match = regex.commandHandler.exec(data)) {
+        do {
+          match = regex.commandHandler.exec(data)
+          if (match) {
+            var commandHandler = match[1]
+            var commandName = getCommandNameFromHandler(commandHandler)
+            var pluginCmd = {
+              name: commandName,
+              identifier: commandName.replace(/ /g, '').toLowerCase(),
+              shortcut: checkForValidShortcut(match, script) || '',
+              handler: commandHandler,
+              script: script
+            }
 
-          var commandHandler = match[1]
-          var commandName = getCommandNameFromHandler(commandHandler)
-          var pluginCmd = {
-            name: commandName,
-            identifier: commandName.replace(/ /g, '').toLowerCase(),
-            shortcut: checkForValidShortcut(match, script) || "",
-            handler: commandHandler,
-            script: script
+            manifest.commands.push(pluginCmd)
+            scriptMenuItem.items.push(pluginCmd.identifier)
           }
-
-          manifest.commands.push(pluginCmd)
-          scriptMenuItem.items.push(pluginCmd.identifier)
-        }
+        } while (match)
 
         manifest.menu.isRoot = true
         manifest.menu.items.push(scriptMenuItem)

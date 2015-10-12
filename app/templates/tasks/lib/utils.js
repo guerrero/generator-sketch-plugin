@@ -1,6 +1,8 @@
+'use strict'
+
 var fs = require('fs')
 
-exports.pathExists = function pathExists (filePath) {
+exports.pathExists = function pathExists(filePath) {
   var fn = typeof fs.access === 'function' ? fs.accessSync : fs.statSync
 
   try {

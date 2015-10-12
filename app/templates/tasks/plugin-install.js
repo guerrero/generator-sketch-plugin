@@ -1,6 +1,5 @@
 'use strict'
 
-var os = require('os')
 var path = require('path')
 var fs = require('fs-extra')
 var inquirer = require('inquirer')
@@ -10,7 +9,6 @@ var homedir = require('homedir')
 var pathExists = require('./lib/utils').pathExists
 var filterFilesInDirByExtension = require('./lib/utils').filterFilesInDirByExtension
 var message = require('./lib/message')(process.argv[1])
-
 
 var messages = {
   start: 'Starting process...',
@@ -33,7 +31,7 @@ var rootDir = path.resolve(__dirname, '..')
 var plugins = filterFilesInDirByExtension(rootDir, '.sketchplugin')
 
 function checkIfFileExistInDirs(file, dirs) {
-  for (var i = 0; i < dirs.length; i++) {
+  for (var i = 0; i < dirs.length; ++i) {
     if (pathExists(path.join(dirs[i], file))) {
       return true
     }
@@ -42,7 +40,7 @@ function checkIfFileExistInDirs(file, dirs) {
 }
 
 function promptUserForOverwrite() {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     var questions = [{
       type: 'confirm',
       name: 'overwriteFile',
@@ -54,8 +52,8 @@ function promptUserForOverwrite() {
   })
 }
 
-function copyPluginsIntoPluginsFolders(plugin, folderPath) {
-  return Promise.each(folderPath, function(folderPath) {
+function copyPluginsIntoPluginsFolders(plugin, folderPaths) {
+  return Promise.each(folderPaths, function(folderPath) {
     var source = path.join(rootDir, plugin)
     var dest = path.join(folderPath, plugin)
 
@@ -70,10 +68,9 @@ function copyPluginsIntoPluginsFolders(plugin, folderPath) {
 
 function installPlugin(plugin) {
   var overwriteFileIsNeeded = false
-  var overwriteFile = false
   var pluginsFolderPathsArray = _.values(pluginsFolderPaths)
-  var destPaths = pluginsFolderPathsArray.filter(function(pluginsFolderPaths) {
-    return pathExists(pluginsFolderPaths)
+  var destPaths = pluginsFolderPathsArray.filter(function(folderPaths) {
+    return pathExists(folderPaths)
   })
 
   overwriteFileIsNeeded = checkIfFileExistInDirs(plugin, destPaths)
@@ -87,9 +84,8 @@ function installPlugin(plugin) {
     .then(function() {
       if (overwriteFileIsNeeded) {
         return promptUserForOverwrite()
-      } else {
-        return true
       }
+      return true
     }).then(function(copyFiles) {
       if (copyFiles) {
         return copyPluginsIntoPluginsFolders(plugin, destPaths)
@@ -98,9 +94,8 @@ function installPlugin(plugin) {
           }).catch(function(err) {
             throw err
           })
-      } else {
-        message('INFO', messages.aborted)
       }
+      message('INFO', messages.aborted)
     }).catch(function(err) {
       throw err
     })
