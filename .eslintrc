@@ -50,7 +50,6 @@
     "no-new-wrappers": 2,
     "no-new": 2,
     "no-param-reassign": 2,
-    "no-plusplus": 2,
     "no-return-assign": 2,
     "no-self-compare": 2,
     "no-unused-expressions": 2,
