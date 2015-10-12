@@ -26,6 +26,9 @@ describe('generator', function() {
       'README.md',
       'package.json',
       'tasks/manifest-update.js',
+      'tasks/plugin-install.js',
+      'tasks/lib/message.js',
+      'tasks/lib/utils.js',
       'My awesome plugin.sketchplugin/Contents/Sketch/manifest.json',
       'My awesome plugin.sketchplugin/Contents/Sketch/script.cocoascript'
     ]
