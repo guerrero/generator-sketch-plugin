@@ -8,7 +8,8 @@
     "email": "<%= authorEmail %>"
   },
   "scripts": {
-    "manifest:update": "node ./tasks/manifest-update.js"
+    "manifest:update": "node ./tasks/manifest-update.js",
+    "plugin:install": "node ./tasks/plugin-install.js"
   },
   "private": true
 }
